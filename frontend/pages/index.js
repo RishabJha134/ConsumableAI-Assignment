@@ -20,7 +20,7 @@ export default function Home({ posts }) {
 
 export async function getServerSideProps() {
   try {
-    const response = await axios.get('https://consumableai-assignment.onrender.com');
+    const response = await axios.get('https://consumableai-assignment.onrender.com/api/posts');
     return {
       props: {
         posts: response.data,

@@ -8,7 +8,7 @@ export default function Create() {
 
   const handleSubmit = async (post) => {
     try {
-      await axios.post('https://consumableai-assignment.onrender.com', post);
+      await axios.post('https://consumableai-assignment.onrender.com/api/posts', post);
       router.push('/');
     } catch (error) {
       console.error('Error creating post:', error);

@@ -7,7 +7,7 @@ export default function Post({ post }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://consumableai-assignment.onrender.com/${post.id}`);
+      await axios.delete(`https://consumableai-assignment.onrender.com/api/posts/${post.id}`);
       router.push('/');
     } catch (error) {
       console.error('Error deleting post:', error);
@@ -33,7 +33,7 @@ export default function Post({ post }) {
 
 export async function getServerSideProps({ params }) {
   try {
-    const response = await axios.get(`https://consumableai-assignment.onrender.com/${params.id}`);
+    const response = await axios.get(`https://consumableai-assignment.onrender.com/api/posts/${params.id}`);
     return {
       props: {
         post: response.data,
