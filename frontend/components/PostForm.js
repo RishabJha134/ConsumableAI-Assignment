@@ -1,7 +1,7 @@
 // components/PostForm.js
 import { useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Button from './Button';
 
 const PostForm = ({ post = {}, isEditMode = false }) => {
@@ -35,26 +35,32 @@ const PostForm = ({ post = {}, isEditMode = false }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title:
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label className="block text-gray-700 font-bold mb-2">Title</label>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          required
+          className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+            errors.title ? 'border-red-500' : ''
+          }`}
+          placeholder="Enter the title"
         />
-        {errors.title && <p className="error-text">{errors.title}</p>}
-      </label>
-      <label>
-        Content:
+        {errors.title && <p className="text-red-500 text-xs italic">{errors.title}</p>}
+      </div>
+      <div>
+        <label className="block text-gray-700 font-bold mb-2">Content</label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          required
+          className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+            errors.content ? 'border-red-500' : ''
+          }`}
+          placeholder="Enter the content"
         />
-        {errors.content && <p className="error-text">{errors.content}</p>}
-      </label>
+        {errors.content && <p className="text-red-500 text-xs italic">{errors.content}</p>}
+      </div>
       <Button type="submit">{isEditMode ? 'Update Post' : 'Create Post'}</Button>
     </form>
   );
